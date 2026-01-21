@@ -1,0 +1,1553 @@
+/* iOS Style To-Do App - Custom Styles */
+@import "tailwind.css";
+/* Custom Font */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* iOS Color Variables */
+:root {
+    --ios-gray: #8e8e93;
+    --ios-blue: #007aff;
+    --ios-green: #34c759;
+    --ios-red: #ff3b30;
+    --ios-orange: #ff9500;
+    --ios-yellow: #ffcc00;
+    --ios-teal: #5ac8fa;
+    --ios-purple: #af52de;
+}
+
+/* Light mode variables - Made darker for better visibility */
+:root, .light {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f2f2f7;
+    --bg-tertiary: #e5e5ea;
+    --text-primary: #000000;
+    --text-secondary: #374151;
+    --text-tertiary: #6b7280;
+    --border-light: rgba(0, 0, 0, 0.1);
+    --border-medium: rgba(0, 0, 0, 0.2);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --card-bg: #ffffff;
+    --modal-bg: #ffffff;
+    --header-bg: rgba(255, 255, 255, 0.95);
+    --button-light-bg: #f9fafb;
+    --button-light-text: #374151;
+    --button-light-hover: #f3f4f6;
+    --button-light-border: #e5e7eb;
+}
+
+/* Dark mode variables */
+.dark {
+    --bg-primary: #000000;
+    --bg-secondary: #1c1c1e;
+    --bg-tertiary: #2c2c2e;
+    --text-primary: #ffffff;
+    --text-secondary: #d1d5db;
+    --text-tertiary: #9ca3af;
+    --border-light: rgba(255, 255, 255, 0.1);
+    --border-medium: rgba(255, 255, 255, 0.2);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --card-bg: #1c1c1e;
+    --modal-bg: #1c1c1e;
+    --header-bg: rgba(28, 28, 30, 0.95);
+    --button-light-bg: #374151;
+    --button-light-text: #f9fafb;
+    --button-light-hover: #4b5563;
+    --button-light-border: #4b5563;
+}
+
+/* Set default light mode colors */
+body {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+/* Custom Animations */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse {
+    animation: pulse 4s ease-in-out infinite;
+}
+
+/* iOS Card */
+.ios-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px var(--shadow-color);
+    border: 1px solid var(--border-light);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ios-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 60px var(--shadow-color);
+}
+
+/* iOS Input */
+.ios-input {
+    background-color: rgba(118, 118, 128, 0.12);
+    border-radius: 14px;
+    border: 2px solid transparent;
+    padding: 14px 16px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    width: 100%;
+    color: var(--text-primary);
+}
+
+.light .ios-input {
+    background-color: rgba(118, 118, 128, 0.08);
+    color: #000000;
+}
+
+.dark .ios-input {
+    background-color: rgba(118, 118, 128, 0.24);
+}
+
+.ios-input:focus {
+    outline: none;
+    background-color: rgba(118, 118, 128, 0.18);
+    border-color: var(--ios-blue);
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+}
+
+.light .ios-input:focus {
+    background-color: rgba(118, 118, 128, 0.12);
+    border-color: var(--ios-blue);
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.15);
+}
+
+.dark .ios-input:focus {
+    background-color: rgba(118, 118, 128, 0.36);
+    border-color: var(--ios-blue);
+    box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.2);
+}
+
+/* iOS Button */
+.ios-button {
+    border-radius: 14px;
+    padding: 14px 20px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ios-button:active {
+    transform: scale(0.98);
+}
+
+/* iOS Small Button for Mobile Menu */
+.ios-button-small {
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+}
+
+.ios-button-small:active {
+    transform: scale(0.98);
+}
+
+/* FIXED: Light mode button colors for filter buttons and cancel button */
+.light .ios-button.bg-gray-100,
+.light .ios-button.bg-white,
+.light .ios-button.bg-gray-50,
+.light #cancel-task-button,
+.light .filter-btn:not(.active) {
+    background-color: var(--button-light-bg) !important;
+    color: var(--button-light-text) !important;
+    border: 1px solid var(--button-light-border) !important;
+}
+
+.light .ios-button.bg-gray-100:hover,
+.light .ios-button.bg-white:hover,
+.light .ios-button.bg-gray-50:hover,
+.light #cancel-task-button:hover,
+.light .filter-btn:not(.active):hover {
+    background-color: var(--button-light-hover) !important;
+}
+
+/* Dark mode button colors */
+.dark .ios-button.bg-gray-100,
+.dark .ios-button.bg-white,
+.dark .ios-button.bg-gray-50,
+.dark #cancel-task-button,
+.dark .filter-btn:not(.active) {
+    background-color: var(--button-light-bg) !important;
+    color: var(--button-light-text) !important;
+    border: 1px solid var(--button-light-border) !important;
+}
+
+.dark .ios-button.bg-gray-100:hover,
+.dark .ios-button.bg-white:hover,
+.dark .ios-button.bg-gray-50:hover,
+.dark #cancel-task-button:hover,
+.dark .filter-btn:not(.active):hover {
+    background-color: var(--button-light-hover) !important;
+}
+
+/* Filter buttons specific styling */
+.filter-btn:not(.active) {
+    background-color: var(--button-light-bg) !important;
+    color: var(--button-light-text) !important;
+    border: 1px solid var(--button-light-border) !important;
+}
+
+.filter-btn:not(.active):hover {
+    background-color: var(--button-light-hover) !important;
+}
+
+/* Active filter button */
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--ios-blue), var(--ios-teal)) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 8px 24px rgba(0, 122, 255, 0.3) !important;
+}
+
+/* Cancel button in modal specific styling */
+#cancel-task-button {
+    background-color: var(--button-light-bg) !important;
+    color: var(--button-light-text) !important;
+    border: 1px solid var(--button-light-border) !important;
+}
+
+#cancel-task-button:hover {
+    background-color: var(--button-light-hover) !important;
+}
+
+/* Checkbox */
+.checkbox {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #c7c7cc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.light .checkbox {
+    border-color: #8e8e93;
+}
+
+.dark .checkbox {
+    border-color: #4a4a4e;
+}
+
+.checkbox.checked {
+    background-color: var(--ios-green);
+    border-color: var(--ios-green);
+    transform: scale(1.1);
+}
+
+.checkbox i {
+    color: white;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.checkbox.checked i {
+    opacity: 1;
+}
+
+.checkbox:hover {
+    transform: scale(1.05);
+}
+
+/* Priority Indicator */
+.priority-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.priority-high { background-color: var(--ios-red); }
+.priority-medium { background-color: var(--ios-orange); }
+.priority-low { background-color: var(--ios-blue); }
+
+/* iOS Modal */
+.ios-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 16px;
+    backdrop-filter: blur(10px);
+}
+
+.dark .ios-modal {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.ios-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ios-modal-content {
+    background-color: var(--modal-bg);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 500px;
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.ios-modal.active .ios-modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.ios-modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-light);
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-primary);
+}
+
+.ios-modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.ios-modal-footer {
+    padding: 20px 24px;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* User Avatar */
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ios-blue), var(--ios-teal));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+/* Task Item */
+.task-item {
+    border-bottom: 1px solid var(--border-light);
+    padding: 16px 0;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+}
+
+.task-item:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-radius: 16px;
+    padding: 16px 12px;
+    margin: 0 -12px;
+}
+
+.light .task-item:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.dark .task-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Animation for task items */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.task-item {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+/* Date Input Styling */
+.light input[type="date"] {
+    color: #000000;
+}
+
+.dark input[type="date"] {
+    color-scheme: dark;
+    color: #ffffff;
+}
+
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.7;
+}
+
+/* Priority option active state */
+.priority-option.active {
+    color: white !important;
+    border-width: 3px !important;
+    transform: scale(1.05);
+}
+
+.priority-option.active[data-priority="low"] {
+    background: linear-gradient(135deg, var(--ios-blue), #5ac8fa) !important;
+    border-color: var(--ios-blue) !important;
+}
+
+.priority-option.active[data-priority="medium"] {
+    background: linear-gradient(135deg, var(--ios-orange), #ffcc00) !important;
+    border-color: var(--ios-orange) !important;
+}
+
+.priority-option.active[data-priority="high"] {
+    background: linear-gradient(135deg, var(--ios-red), #ff375f) !important;
+    border-color: var(--ios-red) !important;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 122, 255, 0.3);
+    border-radius: 8px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: rgba(10, 132, 255, 0.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 122, 255, 0.5);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(10, 132, 255, 0.6);
+}
+
+/* Navbar Styling */
+header {
+    background: var(--header-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+}
+
+/* Fix for welcome username color */
+#welcome-username {
+    color: #2563eb !important; /* Blue-600 */
+}
+
+.dark #welcome-username {
+    color: #38bdf8 !important; /* Sky-400 */
+}
+
+/* Fix for menu username visibility */
+#menu-username {
+    color: var(--text-primary) !important;
+}
+
+/* Fix for welcome message visibility */
+#welcome-task-count {
+    color: var(--text-primary) !important;
+    font-weight: bold;
+}
+
+/* Fix for task stats visibility */
+#total-tasks, #completed-tasks, #pending-tasks,
+#total-tasks-mobile, #completed-tasks-mobile, #pending-tasks-mobile {
+    color: var(--text-primary) !important;
+}
+
+/* Fix for current time visibility */
+#current-time {
+    color: var(--text-primary) !important;
+}
+
+#current-date {
+    color: var(--text-secondary) !important;
+}
+
+/* Fix for sidebar text colors */
+#sidebar-date, #sidebar-day, #sidebar-full-date,
+#sidebar-time, #sidebar-period, #sidebar-timezone,
+#stopwatch-display {
+    color: white !important;
+}
+
+/* Fix for no tasks message */
+#no-tasks-message {
+    color: var(--text-secondary) !important;
+}
+
+/* Fix for task item text colors */
+.task-item h3 {
+    color: var(--text-primary) !important;
+}
+
+.task-item p {
+    color: var(--text-secondary) !important;
+}
+
+/* Fix for priority badges */
+.text-green-800, .text-yellow-800, .text-blue-800, .text-orange-800, .text-red-800 {
+    color: var(--text-primary) !important;
+}
+
+.light .text-green-800 { color: #166534 !important; }
+.light .text-yellow-800 { color: #92400e !important; }
+.light .text-blue-800 { color: #1e40af !important; }
+.light .text-orange-800 { color: #9a3412 !important; }
+.light .text-red-800 { color: #991b1b !important; }
+
+.dark .text-green-800 { color: #a7f3d0 !important; }
+.dark .text-yellow-800 { color: #fef3c7 !important; }
+.dark .text-blue-800 { color: #bfdbfe !important; }
+.dark .text-orange-800 { color: #fed7aa !important; }
+.dark .text-red-800 { color: #fecaca !important; }
+
+/* Alert notification styling */
+#alert-container .bg-gradient-to-r {
+    padding: 10px 14px !important;
+    font-size: 13px;
+}
+
+#alert-container i {
+    font-size: 14px;
+}
+
+/* Mobile Menu Styling */
+#mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 12px;
+    right: 12px;
+    z-index: 30;
+    margin-top: 8px;
+    animation: slideDown 0.3s ease-out;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.dark #mobile-menu {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile menu toggle button */
+#mobile-menu-toggle {
+    transition: all 0.3s ease;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+}
+
+#mobile-menu-toggle:hover {
+    transform: scale(1.05);
+}
+
+#mobile-menu-toggle i {
+    font-size: 14px;
+}
+
+/* Mobile menu buttons */
+#theme-toggle-app-mobile,
+#add-task-button-mobile {
+    width: 100%;
+    justify-content: center;
+}
+
+/* Mobile stats */
+#total-tasks-mobile,
+#completed-tasks-mobile,
+#pending-tasks-mobile {
+    font-size: 1rem;
+}
+
+/* Mobile menu content padding */
+#mobile-menu .ios-card {
+    padding: 12px;
+}
+
+#mobile-menu .flex.justify-between.mb-3 {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+#mobile-menu .space-y-2 {
+    gap: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+    .ios-modal-content {
+        max-height: 85vh;
+        border-radius: 16px;
+    }
+    
+    .ios-modal-header {
+        padding: 16px 20px;
+    }
+    
+    .ios-modal-body {
+        padding: 20px;
+    }
+    
+    .ios-modal-footer {
+        padding: 16px 20px;
+    }
+    
+    .task-item:hover {
+        padding: 12px 8px;
+        margin: 0 -8px;
+    }
+    
+    .priority-option {
+        padding: 12px;
+    }
+    
+    /* Mobile responsive fixes */
+    header .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    #user-avatar,
+    #user-avatar-mobile {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    
+    #theme-toggle-app {
+        width: 36px;
+        height: 36px;
+    }
+    
+    #add-task-button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    /* Mobile menu toggle */
+    #mobile-menu-toggle {
+        width: 36px;
+        height: 36px;
+    }
+    
+    /* Adjust welcome banner for mobile */
+    .ios-card.p-4 {
+        padding: 1rem;
+    }
+    
+    .ios-card .w-10 {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    
+    /* Adjust task item for mobile */
+    .task-item {
+        flex-direction: row;
+        padding: 12px 0;
+    }
+    
+    .task-item > div:first-child {
+        margin-right: 12px;
+    }
+    
+    .task-item .ml-4 {
+        margin-left: 8px;
+    }
+    
+    /* Adjust time display on welcome banner */
+    #current-time {
+        font-size: 1.5rem;
+    }
+    
+    #current-date {
+        font-size: 0.75rem;
+    }
+    
+    /* Adjust task buttons for mobile */
+    .task-item .ml-4.flex.space-x-2 button {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .task-item .ml-4.flex.space-x-2 button i {
+        font-size: 12px;
+    }
+    
+    /* Smaller alert notifications on mobile */
+    #alert-container {
+        max-width: calc(100% - 16px);
+        top: 8px;
+        right: 8px;
+    }
+    
+    #alert-container .bg-gradient-to-r {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    /* Mobile menu adjustments */
+    #mobile-menu {
+        left: 12px;
+        right: 12px;
+        margin-top: 8px;
+        position: absolute;
+        z-index: 100;
+    }
+    
+    /* Main content margin adjustment for mobile menu */
+    main {
+        transition: margin-top 0.3s ease;
+    }
+    
+    /* Hide desktop user menu on mobile when mobile menu is open */
+    #user-menu.hidden {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small devices */
+    .ios-card.p-6 {
+        padding: 1rem;
+    }
+    
+    .text-3xl {
+        font-size: 1.5rem;
+    }
+    
+    .w-20.h-20 {
+        width: 4rem;
+        height: 4rem;
+    }
+    
+    /* Adjust modal for small screens */
+    .ios-modal-body {
+        padding: 1rem;
+    }
+    
+    /* Adjust priority options grid */
+    .grid.grid-cols-3.gap-2 {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .priority-option.p-3 {
+        padding: 0.5rem;
+    }
+    
+    /* Adjust stopwatch buttons */
+    .flex.flex-wrap.justify-center.gap-2 {
+        gap: 0.25rem;
+    }
+    
+    #stopwatch-start, #stopwatch-pause, #stopwatch-reset {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+    
+    /* Adjust filter buttons for very small screens */
+    .filter-btn {
+        min-width: 80px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .filter-btn i {
+        margin-right: 4px;
+    }
+    
+    /* Even smaller alerts on very small screens */
+    #alert-container .bg-gradient-to-r {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+    
+    /* Mobile menu for very small screens */
+    #mobile-menu {
+        left: 8px;
+        right: 8px;
+        padding: 0.75rem;
+    }
+    
+    /* Smaller mobile menu buttons */
+    #theme-toggle-app-mobile,
+    #add-task-button-mobile {
+        padding: 8px 10px;
+        font-size: 13px;
+        min-height: 36px;
+    }
+    
+    /* Smaller mobile stats */
+    #total-tasks-mobile,
+    #completed-tasks-mobile,
+    #pending-tasks-mobile {
+        font-size: 0.9rem;
+    }
+    
+    /* Mobile menu toggle smaller */
+    #mobile-menu-toggle {
+        width: 34px;
+        height: 34px;
+    }
+    
+    #mobile-menu-toggle i {
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+    /* Tablet adjustments */
+    .ios-modal-content {
+        max-width: 90%;
+    }
+    
+    .task-item {
+        flex-direction: row;
+    }
+    
+    .filter-btn {
+        min-width: 120px;
+    }
+    
+    /* Hide mobile menu on tablets */
+    #mobile-menu-toggle {
+        display: none;
+    }
+    
+    #mobile-menu {
+        display: none !important;
+    }
+}
+
+/* Smooth transitions */
+* {
+    transition: background-color 0.3s ease, 
+                border-color 0.3s ease, 
+                color 0.3s ease,
+                transform 0.3s ease,
+                margin-top 0.3s ease;
+}
+
+/* FIXED: Card gradients - Added !important to ensure they override Tailwind classes */
+.bg-gradient-to-br\.from-blue-500\.to-teal-400,
+.bg-gradient-to-br\.from-purple-500\.to-pink-500,
+.bg-gradient-to-br\.from-orange-500\.to-yellow-500,
+.bg-gradient-to-br\.from-gray-800\.to-gray-900,
+.bg-gradient-to-br.from-blue-500.to-teal-400,
+.bg-gradient-to-br.from-purple-500.to-pink-500,
+.bg-gradient-to-br.from-orange-500.to-yellow-500,
+.bg-gradient-to-br.from-gray-800.to-gray-900 {
+    background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+    background-color: transparent;
+}
+
+/* Login screen background */
+#auth-screen {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+}
+
+/* Fix for header text colors */
+.light header .text-gray-500 {
+    color: #6b7280;
+}
+
+.light header .text-xs.text-gray-500 {
+    color: #6b7280;
+}
+
+/* Fix for modal text colors */
+.light .ios-modal-header .text-gray-800 {
+    color: #1f2937;
+}
+
+.light .ios-modal-body label {
+    color: #374151;
+}
+
+/* Fix for user menu text */
+.light #user-menu .text-gray-800 {
+    color: #1f2937;
+}
+
+.light #user-menu .text-gray-500 {
+    color: #6b7280;
+}
+
+/* Fix for priority option text in light mode */
+.light .priority-option.text-blue-700 {
+    color: #1d4ed8;
+}
+
+.light .priority-option.text-orange-700 {
+    color: #c2410c;
+}
+
+.light .priority-option.text-red-700 {
+    color: #b91c1c;
+}
+
+/* FIXED: Line clamp for task descriptions with proper browser prefixes */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Fix for login/register card text - Made darker */
+.light .text-gray-700 {
+    color: #374151;
+}
+
+.light .text-gray-500 {
+    color: #6b7280;
+}
+
+.light .text-gray-600 {
+    color: #4b5563;
+}
+
+/* Improve mobile touch targets */
+@media (max-width: 768px) {
+    button, 
+    .checkbox, 
+    input[type="checkbox"], 
+    input[type="radio"] {
+        min-height: 36px;
+        min-width: 36px;
+    }
+    
+    .ios-button {
+        padding: 10px 14px;
+    }
+    
+    .ios-button-small {
+        padding: 8px 12px;
+        font-size: 13px;
+        min-height: 38px;
+    }
+    
+    /* Adjust form inputs for mobile */
+    .ios-input {
+        padding: 12px 14px;
+        font-size: 15px;
+    }
+}
+
+/* Prevent text overflow on mobile */
+@media (max-width: 640px) {
+    .truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 150px;
+    }
+    
+    .line-clamp-2 {
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+    }
+    
+    /* Adjust task title for mobile */
+    .task-item h3 {
+        font-size: 14px;
+        max-width: 180px;
+    }
+    
+    /* Adjust task description for mobile */
+    .task-item p {
+        font-size: 12px;
+    }
+    
+    /* Adjust task badges for mobile */
+    .task-item .text-xs {
+        font-size: 10px;
+    }
+}
+
+/* Special fix for dark mode text visibility */
+.light .text-gray-600 {
+    color: #4b5563;
+}
+
+.light .text-gray-400 {
+    color: #9ca3af;
+}
+
+.light .text-gray-500 {
+    color: #6b7280;
+}
+
+/* Fix for alert container positioning */
+#alert-container {
+    max-width: calc(100% - 32px);
+}
+
+/* Fix for task stats on mobile */
+@media (max-width: 640px) {
+    #total-tasks, #completed-tasks, #pending-tasks,
+    #total-tasks-mobile, #completed-tasks-mobile, #pending-tasks-mobile {
+        font-size: 1.1rem;
+    }
+}
+
+/* Fix for stopwatch display on mobile */
+@media (max-width: 640px) {
+    #stopwatch-display {
+        font-size: 1.75rem;
+    }
+}
+
+/* Fix for sidebar cards on mobile */
+@media (max-width: 1024px) {
+    .lg\:w-1\/3 {
+        margin-top: 1rem;
+    }
+}
+
+/* Fix for task item action buttons on hover */
+.task-item .edit-task-btn,
+.task-item .delete-task-btn {
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.task-item:hover .edit-task-btn,
+.task-item:hover .delete-task-btn {
+    opacity: 1;
+}
+
+/* Ensure task action buttons are always visible on mobile */
+@media (max-width: 640px) {
+    .task-item .edit-task-btn,
+    .task-item .delete-task-btn {
+        opacity: 1;
+    }
+}
+
+/* Make light mode text darker for better visibility */
+.light {
+    color: #000000;
+}
+
+.light .text-gray-800 {
+    color: #1f2937;
+}
+
+.light .text-gray-700 {
+    color: #374151;
+}
+
+.light .text-gray-600 {
+    color: #4b5563;
+}
+
+.light .text-gray-500 {
+    color: #6b7280;
+}
+
+.light .text-gray-400 {
+    color: #9ca3af;
+}
+
+/* Make labels more visible in light mode */
+.light label {
+    color: #374151;
+}
+
+/* Make placeholder text visible */
+.light .ios-input::placeholder {
+    color: #6b7280;
+    opacity: 0.8;
+}
+
+.dark .ios-input::placeholder {
+    color: #9ca3af;
+    opacity: 0.8;
+}
+
+/* Make borders more visible in light mode */
+.light .border-gray-200 {
+    border-color: #e5e7eb;
+}
+
+.light .border-gray-100 {
+    border-color: #f3f4f6;
+}
+
+/* Welcome banner specific fixes for light mode */
+.light .bg-gradient-to-r.from-blue-50.to-teal-50 {
+    background: linear-gradient(135deg, rgba(219, 234, 254, 0.7), rgba(204, 251, 241, 0.7));
+}
+
+.light .border-blue-100 {
+    border-color: rgba(219, 234, 254, 0.8);
+}
+
+/* Fix for gradient card text - ensure text is white */
+.bg-gradient-to-br.from-blue-500.to-teal-400,
+.bg-gradient-to-br.from-purple-500.to-pink-500,
+.bg-gradient-to-br.from-orange-500.to-yellow-500,
+.bg-gradient-to-br.from-gray-800.to-gray-900,
+[class*="bg-gradient-to-br"] {
+    color: white;
+}
+
+/* Fix for gradient card children text */
+.bg-gradient-to-br.from-blue-500.to-teal-400 *,
+.bg-gradient-to-br.from-purple-500.to-pink-500 *,
+.bg-gradient-to-br.from-orange-500.to-yellow-500 *,
+.bg-gradient-to-br.from-gray-800.to-gray-900 * {
+    color: white;
+}
+
+/* Fix for Tailwind CSS conflicts - Override any background-color that might conflict */
+.bg-gradient-to-br {
+    background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+    background-color: transparent;
+}
+
+/* Fix for text selection */
+::selection {
+    background-color: rgba(0, 122, 255, 0.3);
+    color: var(--text-primary);
+}
+
+.dark ::selection {
+    background-color: rgba(10, 132, 255, 0.4);
+}
+
+/* Fix for focus outlines */
+:focus-visible {
+    outline: 2px solid var(--ios-blue);
+    outline-offset: 2px;
+}
+
+/* Fix for disabled elements */
+:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Fix for print styles */
+@media print {
+    .ios-card {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    #alert-container,
+    #theme-toggle,
+    #theme-toggle-app,
+    #mobile-add-button,
+    #mobile-menu-toggle,
+    #mobile-menu {
+        display: none;
+    }
+}
+
+/* Mobile menu specific fixes */
+@media (min-width: 768px) {
+    #mobile-menu-toggle {
+        display: none;
+    }
+    
+    #mobile-menu {
+        display: none !important;
+    }
+}
+
+/* Mobile user menu positioning */
+#user-menu {
+    z-index: 100;
+}
+
+@media (max-width: 768px) {
+    #user-menu {
+        top: 4.5rem;
+        right: 1rem;
+    }
+}
+
+/* Mobile menu animations */
+#mobile-menu.hidden {
+    display: none;
+}
+
+/* Fix for mobile menu stats */
+#total-tasks-mobile,
+#completed-tasks-mobile,
+#pending-tasks-mobile {
+    font-weight: bold;
+}
+
+/* Make sure mobile menu doesn't overflow on small screens */
+@media (max-width: 400px) {
+    #mobile-menu {
+        max-width: calc(100% - 1rem);
+        left: 0.5rem;
+        right: 0.5rem;
+    }
+}
+
+/* Mobile menu backdrop on very small screens */
+@media (max-width: 640px) {
+    #mobile-menu {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.98);
+    }
+    
+    .dark #mobile-menu {
+        background-color: rgba(28, 28, 30, 0.98);
+    }
+}
+
+/* Fix for main content when mobile menu is open */
+main {
+    transition: margin-top 0.3s ease;
+}
+
+/* Ensure tasks section is visible when mobile menu opens */
+#tasks-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Mobile menu opens above content but pushes it down */
+#app-screen {
+    position: relative;
+}
+
+/* Header should stay above everything */
+header {
+    z-index: 50;
+}
+
+/* Mobile menu should be above content but below modals */
+#mobile-menu {
+    z-index: 45;
+}
+
+/* Fix for iOS-style small button text */
+.ios-button-small i {
+    font-size: 12px;
+}
+
+/* Center align mobile menu stats */
+#mobile-menu .flex.justify-between {
+    justify-content: space-around;
+}
+
+#mobile-menu .text-center {
+    flex: 1;
+}
+
+/* Mobile menu button text alignment */
+#theme-toggle-app-mobile,
+#add-task-button-mobile {
+    justify-content: center;
+    text-align: center;
+}
+
+/* Fix for hamburger icon alignment */
+#mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Landing Page Specific Styles */
+
+/* Animation for hero elements */
+@keyframes float-up {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-float-up {
+    animation: float-up 0.8s ease-out forwards;
+}
+
+/* iPhone mockup styling */
+.iphone-mockup {
+    border-radius: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.iphone-mockup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 40px 40px 0 0;
+    z-index: 1;
+}
+
+/* Feature cards hover effect */
+.feature-card {
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Testimonial card styling */
+.testimonial-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    font-size: 100px;
+    color: rgba(0, 122, 255, 0.1);
+    font-family: Georgia, serif;
+}
+
+/* Landing page specific button styles */
+.landing-button {
+    padding: 16px 32px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.landing-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Gradient text for headings */
+.gradient-text {
+    background: linear-gradient(135deg, var(--ios-blue), var(--ios-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Stats counter animation */
+@keyframes count-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-number {
+    animation: count-up 0.8s ease-out forwards;
+}
+
+/* Hero section background effects */
+.hero-bg {
+    background: radial-gradient(circle at 30% 50%, rgba(0, 122, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(90, 200, 250, 0.1) 0%, transparent 50%);
+}
+
+/* Responsive adjustments for landing page */
+@media (max-width: 768px) {
+    .hero-bg {
+        background: radial-gradient(circle at 50% 30%, rgba(0, 122, 255, 0.1) 0%, transparent 70%);
+    }
+    
+    .landing-button {
+        padding: 14px 24px;
+        font-size: 16px;
+    }
+    
+    .iphone-mockup {
+        transform: scale(0.9);
+    }
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Landing page specific transitions */
+#landing-screen,
+#auth-screen,
+#app-screen {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Navigation bar for landing page */
+.landing-nav {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.dark .landing-nav {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Section spacing */
+.section-spacing {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+@media (max-width: 768px) {
+    .section-spacing {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+}
+
+/* Landing page CTA button pulse animation */
+@keyframes pulse-cta {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(0, 122, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 122, 255, 0);
+    }
+}
+
+.pulse-button {
+    animation: pulse-cta 2s infinite;
+}
+
+/* Feature icon animations */
+.feature-icon {
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Landing page footer styling */
+.landing-footer {
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+    border-top: 1px solid var(--border-light);
+}

@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iTasks - iOS Style To-Do App</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font for iOS style -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body class="min-h-screen transition-colors duration-500">
+    <!-- iOS-style Alert Container -->
+    <div id="alert-container" class="fixed top-4 right-4 z-50 space-y-2 max-w-xs md:max-w-sm"></div>
+    
+    <!-- Landing Page -->
+    <div id="landing-screen" class="min-h-screen">
+        <!-- Navigation -->
+        <nav class="sticky top-0 z-40 backdrop-blur-xl border-b shadow-lg">
+            <div class="container mx-auto px-4 md:px-6 py-4 md:py-5 max-w-7xl">
+                <div class="flex items-center justify-between">
+                    <!-- Logo -->
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center mr-3 shadow-lg">
+                            <i class="fas fa-check text-white text-sm"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">iTasks</h1>
+                            <p class="text-xs text-gray-600 dark:text-gray-300">Your productivity companion</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle-landing" class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 text-white flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300">
+                        <i id="theme-icon-landing" class="fas fa-moon text-lg md:text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section class="pt-12 md:pt-20 pb-16 md:pb-24 px-4 md:px-6">
+            <div class="container mx-auto max-w-7xl">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12">
+                    <!-- Left Content -->
+                    <div class="lg:w-1/2" data-aos="fade-right" data-aos-duration="800">
+                        <div class="mb-6 md:mb-8">
+                            <span class="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-blue-100 to-teal-100 dark:from-blue-900/30 dark:to-teal-900/30 text-blue-600 dark:text-blue-400 font-semibold text-sm mb-4">
+                                <i class="fas fa-rocket mr-2"></i> Boost Your Productivity
+                            </span>
+                            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 dark:text-white mb-4 md:mb-6">
+                                Organize Your Life with 
+                                <span class="bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">iTasks</span>
+                            </h1>
+                            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 md:mb-8">
+                                Experience the elegance of iOS-style task management. Simple, beautiful, and incredibly effective for managing your daily tasks and boosting productivity.
+                            </p>
+                        </div>
+                        
+                        <!-- Stats -->
+                        <div class="flex flex-wrap gap-4 md:gap-6 mb-8 md:mb-10">
+                            <div class="text-center">
+                                <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400">99%</div>
+                                <div class="text-gray-600 dark:text-gray-400 text-sm md:text-base">User Satisfaction</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl md:text-4xl font-bold text-teal-600 dark:text-teal-400">10K+</div>
+                                <div class="text-gray-600 dark:text-gray-400 text-sm md:text-base">Tasks Managed</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400">24/7</div>
+                                <div class="text-gray-600 dark:text-gray-400 text-sm md:text-base">Availability</div>
+                            </div>
+                        </div>
+                        
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-wrap gap-4">
+                            <button id="get-started-button" class="px-6 md:px-8 py-3 md:py-4 rounded-xl bg-gradient-to-r from-blue-500 to-teal-400 hover:from-blue-600 hover:to-teal-500 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 text-base md:text-lg">
+                                <i class="fas fa-sign-in-alt mr-2 md:mr-3"></i> Get Started Free
+                            </button>
+                            <button id="learn-more-button" class="px-6 md:px-8 py-3 md:py-4 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 text-base md:text-lg">
+                                <i class="fas fa-play-circle mr-2 md:mr-3"></i> Watch Demo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Content - Hero Image/Preview -->
+                    <div class="lg:w-1/2" data-aos="fade-left" data-aos-duration="800">
+                        <div class="relative">
+                            <!-- Floating iPhone Mockup -->
+                            <div class="relative mx-auto max-w-md">
+                                <div class="ios-card p-6 md:p-8 bg-gradient-to-br from-gray-900 to-black rounded-3xl transform rotate-3 shadow-2xl">
+                                    <div class="flex items-center justify-between mb-6">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center mr-2">
+                                                <i class="fas fa-check text-white text-xs"></i>
+                                            </div>
+                                            <span class="text-white font-bold text-lg">iTasks</span>
+                                        </div>
+                                        <div class="text-white text-sm">9:41</div>
+                                    </div>
+                                    
+                                    <!-- App Preview -->
+                                    <div class="space-y-4">
+                                        <div class="flex items-center bg-white/10 backdrop-blur-sm rounded-2xl p-4">
+                                            <div class="w-6 h-6 rounded-full border-2 border-green-400 flex items-center justify-center mr-3">
+                                                <i class="fas fa-check text-green-400 text-xs"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="text-white font-medium">Design Landing Page</div>
+                                                <div class="text-gray-300 text-xs">Completed • Today</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex items-center bg-white/10 backdrop-blur-sm rounded-2xl p-4">
+                                            <div class="w-6 h-6 rounded-full border-2 border-blue-400 flex items-center justify-center mr-3">
+                                                <i class="fas fa-clock text-blue-400 text-xs"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="text-white font-medium">Team Meeting</div>
+                                                <div class="text-gray-300 text-xs">In Progress • 2:00 PM</div>
+                                            </div>
+                                            <span class="px-2 py-1 bg-blue-500/30 text-blue-300 rounded-full text-xs">High</span>
+                                        </div>
+                                        
+                                        <div class="flex items-center bg-white/10 backdrop-blur-sm rounded-2xl p-4">
+                                            <div class="w-6 h-6 rounded-full border-2 border-yellow-400 flex items-center justify-center mr-3">
+                                                <i class="fas fa-clock text-yellow-400 text-xs"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="text-white font-medium">Write Documentation</div>
+                                                <div class="text-gray-300 text-xs">Pending • Tomorrow</div>
+                                            </div>
+                                            <span class="px-2 py-1 bg-yellow-500/30 text-yellow-300 rounded-full text-xs">Medium</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Quick Stats -->
+                                    <div class="flex justify-between mt-6 pt-6 border-t border-white/20">
+                                        <div class="text-center">
+                                            <div class="text-white font-bold text-xl">12</div>
+                                            <div class="text-gray-300 text-xs">Total</div>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="text-green-400 font-bold text-xl">8</div>
+                                            <div class="text-gray-300 text-xs">Done</div>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="text-yellow-400 font-bold text-xl">4</div>
+                                            <div class="text-gray-300 text-xs">Pending</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Decorative Elements -->
+                                <div class="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-r from-blue-500 to-teal-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+                                <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section class="py-16 md:py-24 px-4 md:px-6 bg-gradient-to-b from-transparent to-gray-100/50 dark:to-gray-900/30">
+            <div class="container mx-auto max-w-7xl">
+                <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Why Choose iTasks?</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                        Designed with attention to detail and user experience in mind
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <!-- Feature 1 -->
+                    <div class="ios-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center mb-6 shadow-lg">
+                            <i class="fas fa-mobile-alt text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">iOS Inspired Design</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Experience the smooth animations, beautiful gradients, and intuitive interface inspired by Apple's design philosophy.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="ios-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mb-6 shadow-lg">
+                            <i class="fas fa-stopwatch text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Built-in Stopwatch</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Time your tasks with precision using our integrated stopwatch. Perfect for Pomodoro technique and time tracking.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="ios-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-orange-500 to-yellow-500 flex items-center justify-center mb-6 shadow-lg">
+                            <i class="fas fa-palette text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Dark/Light Mode</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Switch between dark and light modes seamlessly. Your eyes will thank you during late-night productivity sessions.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 4 -->
+                    <div class="ios-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="400">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-green-500 to-emerald-400 flex items-center justify-center mb-6 shadow-lg">
+                            <i class="fas fa-shield-alt text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Local Storage</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Your data stays on your device. No cloud storage means better privacy and security for your personal tasks.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 5 -->
+                    <div class="ios-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="500">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-red-500 to-pink-500 flex items-center justify-center mb-6 shadow-lg">
+                            <i class="fas fa-bolt text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Fast & Responsive</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Built with modern web technologies for blazing fast performance on both desktop and mobile devices.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 6 -->
+                    <div class="ios-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="600">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-indigo-500 to-blue-400 flex items-center justify-center mb-6 shadow-lg">
+                            <i class="fas fa-chart-line text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Progress Tracking</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Visual progress indicators and statistics help you stay motivated and track your productivity over time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials Section -->
+        <section class="py-16 md:py-24 px-4 md:px-6">
+            <div class="container mx-auto max-w-7xl">
+                <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">What Users Say</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                        Join thousands of satisfied users who transformed their productivity
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="ios-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center mr-4">
+                                <span class="text-white font-bold">SR</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 dark:text-white">Sarah Johnson</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Product Manager</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 italic mb-4">
+                            "iTasks completely transformed how I manage my daily work. The iOS-style interface is so intuitive and beautiful!"
+                        </p>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="ios-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mr-4">
+                                <span class="text-white font-bold">MJ</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 dark:text-white">Michael Chen</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Software Engineer</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 italic mb-4">
+                            "The built-in stopwatch and priority system helped me implement Pomodoro technique effectively. My productivity doubled!"
+                        </p>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="ios-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-yellow-500 flex items-center justify-center mr-4">
+                                <span class="text-white font-bold">AR</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 dark:text-white">Alex Rodriguez</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Student</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 italic mb-4">
+                            "As a student, iTasks helps me organize assignments and deadlines. The dark mode is perfect for late-night study sessions."
+                        </p>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Final CTA Section -->
+        <section class="py-16 md:py-24 px-4 md:px-6 bg-gradient-to-r from-blue-500 to-teal-400">
+            <div class="container mx-auto max-w-4xl text-center">
+                <div class="ios-card p-8 md:p-12 bg-white dark:bg-gray-900 shadow-2xl" data-aos="zoom-in">
+                    <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center mx-auto mb-6 shadow-xl">
+                        <i class="fas fa-check-circle text-white text-3xl md:text-4xl"></i>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">
+                        Ready to Boost Your Productivity?
+                    </h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+                        Join thousands of users who transformed their task management with iTasks. It's free, beautiful, and incredibly effective.
+                    </p>
+                    <button id="final-cta-button" class="px-8 md:px-10 py-4 md:py-5 rounded-xl bg-gradient-to-r from-blue-500 to-teal-400 hover:from-blue-600 hover:to-teal-500 text-white font-bold shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-300 text-lg md:text-xl">
+                        <i class="fas fa-rocket mr-3"></i> Start Your Journey Now
+                    </button>
+                    <p class="text-gray-500 dark:text-gray-400 mt-4 text-sm">
+                        No credit card required • 100% free forever
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="py-8 md:py-12 px-4 md:px-6 bg-gray-900 text-white">
+            <div class="container mx-auto max-w-7xl">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="flex items-center mb-6 md:mb-0">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center mr-3">
+                            <i class="fas fa-check text-white text-sm"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">iTasks</h3>
+                            <p class="text-gray-400 text-sm">Simplify your day, achieve more</p>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center md:text-right">
+                        <p class="text-gray-400 mb-2">© 2024 iTasks. All rights reserved.</p>
+                        <p class="text-gray-500 text-sm">Made with <i class="fas fa-heart text-red-400 mx-1"></i> for productivity lovers</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Login/Register Screen (Hidden by default) -->
+    <div id="auth-screen" class="min-h-screen hidden items-center justify-center p-4 md:p-6 relative">
+        <!-- Theme Toggle in top right corner -->
+        <button id="theme-toggle-auth" class="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 text-white flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-50">
+            <i id="theme-icon-auth" class="fas fa-moon text-lg md:text-xl"></i>
+        </button>
+        
+        <!-- Back to Landing Button -->
+        <button id="back-to-landing" class="absolute top-4 left-4 md:top-6 md:left-6 w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-gray-500 to-gray-700 text-white flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-50">
+            <i class="fas fa-arrow-left text-lg md:text-xl"></i>
+        </button>
+        
+        <div class="w-full max-w-md">
+            <!-- Beautiful Login Card -->
+            <div class="relative">
+                <!-- Decorative Blur Circles -->
+                <div class="absolute -top-16 -left-16 w-48 h-48 md:w-64 md:h-64 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+                <div class="absolute -bottom-16 -right-16 w-48 h-48 md:w-64 md:h-64 bg-teal-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-1000"></div>
+                
+                <div class="relative ios-card p-6 md:p-10 mb-6 overflow-hidden">
+                    <!-- Animated Background Gradient -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-teal-500/5"></div>
+                    
+                    <!-- Logo and Title -->
+                    <div class="text-center mb-8 md:mb-10 relative z-10">
+                        <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-blue-500 to-teal-400 flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-xl animate-float">
+                            <i class="fas fa-check-circle text-white text-4xl md:text-5xl"></i>
+                        </div>
+                        <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mb-2">Welcome Back</h1>
+                        <p class="text-gray-600 dark:text-gray-300 text-base md:text-lg">Sign in to continue to iTasks</p>
+                    </div>
+                    
+                    <!-- Login Form -->
+                    <div id="login-form" class="space-y-4 md:space-y-6 relative z-10">
+                        <div>
+                            <div class="flex items-center mb-2 md:mb-3">
+                                <i class="fas fa-user text-blue-500 mr-2 text-base md:text-lg"></i>
+                                <label class="text-gray-800 dark:text-gray-200 font-medium text-sm md:text-base">Username</label>
+                            </div>
+                            <input type="text" id="login-username" placeholder="Enter your username" class="ios-input w-full text-base md:text-lg" autocomplete="username">
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-2 md:mb-3">
+                                <i class="fas fa-lock text-blue-500 mr-2 text-base md:text-lg"></i>
+                                <label class="text-gray-800 dark:text-gray-200 font-medium text-sm md:text-base">Password</label>
+                            </div>
+                            <input type="password" id="login-password" placeholder="Enter your password" class="ios-input w-full text-base md:text-lg" autocomplete="current-password">
+                        </div>
+                        <button id="login-button" class="w-full ios-button bg-gradient-to-r from-blue-500 to-teal-400 hover:from-blue-600 hover:to-teal-500 text-white text-base md:text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300">
+                            <i class="fas fa-sign-in-alt mr-2 md:mr-3"></i> Sign In
+                        </button>
+                        
+                        <div class="text-center pt-4 md:pt-6 border-t border-gray-200 dark:border-gray-700">
+                            <p class="text-gray-600 dark:text-gray-300 mb-3 md:mb-4 text-sm md:text-base">New to iTasks?</p>
+                            <button id="show-register" class="ios-button bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 text-sm md:text-base px-4 md:px-6 py-3">
+                                <i class="fas fa-user-plus mr-2 md:mr-3"></i> Create Account
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Register Form (Initially Hidden) -->
+                    <div id="register-form" class="space-y-4 md:space-y-6 relative z-10 hidden">
+                        <div>
+                            <div class="flex items-center mb-2 md:mb-3">
+                                <i class="fas fa-user-plus text-purple-500 mr-2 text-base md:text-lg"></i>
+                                <label class="text-gray-800 dark:text-gray-200 font-medium text-sm md:text-base">Choose Username</label>
+                            </div>
+                            <input type="text" id="register-username" placeholder="Choose a username" class="ios-input w-full text-base md:text-lg" autocomplete="username">
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-2 md:mb-3">
+                                <i class="fas fa-lock text-purple-500 mr-2 text-base md:text-lg"></i>
+                                <label class="text-gray-800 dark:text-gray-200 font-medium text-sm md:text-base">Create Password</label>
+                            </div>
+                            <input type="password" id="register-password" placeholder="Create a password" class="ios-input w-full text-base md:text-lg" autocomplete="new-password">
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-2 md:mb-3">
+                                <i class="fas fa-lock text-purple-500 mr-2 text-base md:text-lg"></i>
+                                <label class="text-gray-800 dark:text-gray-200 font-medium text-sm md:text-base">Confirm Password</label>
+                            </div>
+                            <input type="password" id="register-confirm-password" placeholder="Confirm your password" class="ios-input w-full text-base md:text-lg" autocomplete="new-password">
+                        </div>
+                        <div class="flex space-x-3 md:space-x-4">
+                            <button id="back-to-login" class="flex-1 ios-button bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 text-sm md:text-base px-3 md:px-4 py-3">
+                                <i class="fas fa-arrow-left mr-2 md:mr-3"></i> Back
+                            </button>
+                            <button id="register-button" class="flex-1 ios-button bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-sm md:text-base px-3 md:px-4 py-3">
+                                <i class="fas fa-user-plus mr-2 md:mr-3"></i> Register
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main App Screen (hidden by default) -->
+    <div id="app-screen" class="min-h-screen hidden">
+        <!-- Header -->
+        <header class="sticky top-0 z-40 backdrop-blur-xl border-b shadow-lg">
+            <div class="container mx-auto px-3 md:px-4 py-3 md:py-4 max-w-7xl">
+                <!-- Mobile Header -->
+                <div class="flex md:hidden items-center justify-between">
+                    <!-- Left: Brand -->
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center mr-2 shadow-lg">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">iTasks</h1>
+                            <p class="text-xs text-gray-600 dark:text-gray-300">Your productivity companion</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Hamburger Menu and User Avatar -->
+                    <div class="flex items-center space-x-2">
+                        <button id="mobile-menu-toggle" class="w-9 h-9 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 text-white flex items-center justify-center shadow-lg">
+                            <i class="fas fa-bars text-base"></i>
+                        </button>
+                        <div id="user-avatar-mobile" class="user-avatar cursor-pointer shadow-lg w-9 h-9 text-base">
+                            <!-- Initial will be added by JS -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desktop Header -->
+                <div class="hidden md:flex flex-row justify-between items-center">
+                    <!-- Left Side: Brand -->
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center mr-3 shadow-lg">
+                            <i class="fas fa-check text-white text-sm"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">iTasks</h1>
+                            <p class="text-xs text-gray-600 dark:text-gray-300">Your productivity companion</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Center: Quick Stats -->
+                    <div class="flex items-center space-x-6">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-gray-800 dark:text-white" id="total-tasks">0</div>
+                            <div class="text-xs text-gray-600 dark:text-gray-300">Total</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-green-500 dark:text-green-400" id="completed-tasks">0</div>
+                            <div class="text-xs text-gray-600 dark:text-gray-300">Done</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-orange-500 dark:text-orange-400" id="pending-tasks">0</div>
+                            <div class="text-xs text-gray-600 dark:text-gray-300">Pending</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side: Controls and User -->
+                    <div class="flex items-center space-x-4">
+                        <button id="theme-toggle-app" class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 text-white flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                            <i id="theme-icon-app" class="fas fa-moon text-xl"></i>
+                        </button>
+                        <button id="add-task-button" class="px-5 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-teal-400 hover:from-blue-600 hover:to-teal-500 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300">
+                            <i class="fas fa-plus mr-2"></i> New Task
+                        </button>
+                        <div id="user-avatar" class="user-avatar cursor-pointer shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 w-12 h-12 text-lg">
+                            <!-- Initial will be added by JS -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu (Dropdown) -->
+                <div id="mobile-menu" class="md:hidden ios-card mt-3 p-3 hidden absolute left-3 right-3 top-16 z-30">
+                    <!-- Mobile Stats -->
+                    <div class="flex justify-between mb-3">
+                        <div class="text-center">
+                            <div class="text-base font-bold text-gray-800 dark:text-white" id="total-tasks-mobile">0</div>
+                            <div class="text-xs text-gray-600 dark:text-gray-300">Total</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-base font-bold text-green-500 dark:text-green-400" id="completed-tasks-mobile">0</div>
+                            <div class="text-xs text-gray-600 dark:text-gray-300">Done</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-base font-bold text-orange-500 dark:text-orange-400" id="pending-tasks-mobile">0</div>
+                            <div class="text-xs text-gray-600 dark:text-gray-300">Pending</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile Controls -->
+                    <div class="space-y-2">
+                        <button id="theme-toggle-app-mobile" class="w-full ios-button-small bg-gradient-to-r from-blue-500 to-teal-400 text-white font-medium flex items-center justify-center">
+                            <i id="theme-icon-app-mobile" class="fas fa-moon mr-2 text-xs"></i> Toggle Theme
+                        </button>
+                        <button id="add-task-button-mobile" class="w-full ios-button-small bg-gradient-to-r from-blue-500 to-teal-400 hover:from-blue-600 hover:to-teal-500 text-white font-medium">
+                            <i class="fas fa-plus mr-2 text-xs"></i> New Task
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- User Menu (dropdown) -->
+                <div id="user-menu" class="absolute right-3 md:right-4 top-16 md:top-20 rounded-2xl shadow-2xl py-3 w-48 md:w-56 hidden z-50 ios-card border border-gray-200 dark:border-gray-700">
+                    <div class="px-4 md:px-5 py-3 md:py-4 border-b border-gray-200 dark:border-gray-700">
+                        <p id="menu-username" class="font-bold text-gray-800 dark:text-white text-base md:text-lg truncate"></p>
+                        <p class="text-xs md:text-sm text-gray-600 dark:text-gray-300 mt-1"><i class="fas fa-user-circle mr-2"></i>Signed in</p>
+                    </div>
+                    <button id="logout-button" class="w-full text-left px-4 md:px-5 py-3 md:py-4 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors flex items-center text-sm md:text-base">
+                        <i class="fas fa-sign-out-alt mr-2 md:mr-3 text-base md:text-lg"></i> 
+                        <span class="font-medium">Log Out</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="container mx-auto px-3 md:px-4 py-4 md:py-8 max-w-7xl">
+            <div class="flex flex-col lg:flex-row gap-4 md:gap-8">
+                <!-- Left Content: Tasks and Filters -->
+                <div class="lg:w-2/3">
+                    <!-- Welcome Banner -->
+                    <div class="ios-card p-4 md:p-6 mb-4 md:mb-8 bg-gradient-to-r from-blue-50 to-teal-50 dark:from-blue-900/20 dark:to-teal-900/20 border border-blue-100 dark:border-blue-800/30">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center mr-3 md:mr-4 shadow-lg">
+                                <i class="fas fa-smile-beam text-white text-base md:text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg md:text-2xl text-gray-800 dark:text-white">Welcome back, <span id="welcome-username" class="text-blue-600 dark:text-blue-400 font-semibold"></span>!</h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base mt-1">You have <span id="welcome-task-count" class="font-bold text-lg md:text-xl text-gray-800 dark:text-white"></span> tasks to complete today</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Filter Tabs -->
+                    <div class="flex flex-wrap gap-2 md:gap-3 mb-4 md:mb-8">
+                        <button data-filter="all" class="filter-btn active px-3 md:px-6 py-2 md:py-3 rounded-xl bg-gradient-to-r from-blue-500 to-teal-400 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 text-sm md:text-base flex-1 sm:flex-none min-w-[100px]">
+                            <i class="fas fa-list mr-1 md:mr-3"></i> All Tasks
+                        </button>
+                        <button data-filter="pending" class="filter-btn px-3 md:px-6 py-2 md:py-3 rounded-xl text-gray-800 dark:text-gray-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 text-sm md:text-base flex-1 sm:flex-none min-w-[100px]">
+                            <i class="fas fa-clock mr-1 md:mr-3"></i> Pending
+                        </button>
+                        <button data-filter="completed" class="filter-btn px-3 md:px-6 py-2 md:py-3 rounded-xl text-gray-800 dark:text-gray-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 text-sm md:text-base flex-1 sm:flex-none min-w-[100px]">
+                            <i class="fas fa-check-circle mr-1 md:mr-3"></i> Completed
+                        </button>
+                        <button data-filter="high" class="filter-btn px-3 md:px-6 py-2 md:py-3 rounded-xl text-gray-800 dark:text-gray-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 text-sm md:text-base flex-1 sm:flex-none min-w-[100px]">
+                            <i class="fas fa-exclamation-triangle mr-1 md:mr-3"></i> High
+                        </button>
+                    </div>
+                    
+                    <!-- Tasks List -->
+                    <div id="tasks-container" class="ios-card p-4 md:p-6 min-h-[300px] md:min-h-[400px]">
+                        <p id="no-tasks-message" class="text-center text-gray-500 dark:text-gray-400 py-8 md:py-16">
+                            <i class="fas fa-tasks text-4xl md:text-6xl mb-4 md:mb-6 text-gray-300 dark:text-gray-600 block"></i>
+                            <span class="text-xl md:text-2xl font-light block mb-2 md:mb-3">No tasks yet</span>
+                            <span class="text-gray-400 dark:text-gray-500 text-sm md:text-base">Create your first task to get started!</span>
+                        </p>
+                        <!-- Tasks will be added here by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Right Sidebar: Date, Time and Stopwatch Cards -->
+                <div class="lg:w-1/3 mt-6 md:mt-0">
+                    <!-- Date Card -->
+                    <div class="ios-card p-4 md:p-6 mb-4 md:mb-6 bg-gradient-to-br from-blue-500 to-teal-400 text-white shadow-xl">
+                        <div class="flex items-center justify-between mb-3 md:mb-4">
+                            <i class="fas fa-calendar-alt text-xl md:text-2xl opacity-80"></i>
+                            <span class="text-xs md:text-sm font-semibold bg-white/20 px-2 md:px-3 py-1 rounded-full">DATE</span>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl md:text-5xl font-bold mb-1 md:mb-2" id="sidebar-date">--</div>
+                            <div class="text-base md:text-xl opacity-90" id="sidebar-day">--</div>
+                            <div class="text-xs md:text-sm opacity-80 mt-1 md:mt-2" id="sidebar-full-date">--</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Time Card -->
+                    <div class="ios-card p-4 md:p-6 mb-4 md:mb-6 bg-gradient-to-br from-purple-500 to-pink-500 text-white shadow-xl">
+                        <div class="flex items-center justify-between mb-3 md:mb-4">
+                            <i class="fas fa-clock text-xl md:text-2xl opacity-80"></i>
+                            <span class="text-xs md:text-sm font-semibold bg-white/20 px-2 md:px-3 py-1 rounded-full">TIME</span>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl md:text-5xl font-bold mb-1 md:mb-2" id="sidebar-time">--:--</div>
+                            <div class="text-base md:text-xl opacity-90" id="sidebar-period">--</div>
+                            <div class="text-xs md:text-sm opacity-80 mt-1 md:mt-2" id="sidebar-timezone">Local Time</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stopwatch Card -->
+                    <div class="ios-card p-4 md:p-6 bg-gradient-to-br from-orange-500 to-yellow-500 text-white shadow-xl">
+                        <div class="flex items-center justify-between mb-3 md:mb-4">
+                            <i class="fas fa-stopwatch text-xl md:text-2xl opacity-80"></i>
+                            <span class="text-xs md:text-sm font-semibold bg-white/20 px-2 md:px-3 py-1 rounded-full">STOPWATCH</span>
+                        </div>
+                        <div class="text-center mb-4 md:mb-6">
+                            <div class="text-3xl md:text-5xl font-bold font-mono mb-1 md:mb-2" id="stopwatch-display">00:00:00</div>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-2 md:gap-4">
+                            <button id="stopwatch-start" class="px-3 md:px-5 py-1.5 md:py-2 rounded-lg bg-white/20 hover:bg-white/30 text-white font-semibold transition-all duration-300 text-sm md:text-base">
+                                <i class="fas fa-play mr-1 md:mr-2"></i> Start
+                            </button>
+                            <button id="stopwatch-pause" class="px-3 md:px-5 py-1.5 md:py-2 rounded-lg bg-white/20 hover:bg-white/30 text-white font-semibold transition-all duration-300 text-sm md:text-base">
+                                <i class="fas fa-pause mr-1 md:mr-2"></i> Pause
+                            </button>
+                            <button id="stopwatch-reset" class="px-3 md:px-5 py-1.5 md:py-2 rounded-lg bg-white/20 hover:bg-white/30 text-white font-semibold transition-all duration-300 text-sm md:text-base">
+                                <i class="fas fa-redo mr-1 md:mr-2"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Productivity Tip -->
+                    <div class="ios-card p-4 md:p-6 mt-4 md:mt-6 bg-gradient-to-br from-gray-800 to-gray-900 text-white">
+                        <div class="flex items-center mb-3 md:mb-4">
+                            <i class="fas fa-lightbulb text-xl md:text-2xl text-yellow-400 mr-2 md:mr-3"></i>
+                            <h3 class="font-bold text-base md:text-lg">Pro Tip</h3>
+                        </div>
+                        <p class="text-gray-300 text-xs md:text-sm">Break large tasks into smaller, manageable chunks. Use the stopwatch to time your work sessions with the Pomodoro technique!</p>
+                        <div class="mt-2 md:mt-4 flex items-center text-xs text-gray-400">
+                            <i class="fas fa-chart-line mr-1 md:mr-2"></i>
+                            <span>Track your productivity with iTasks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Add Task Floating Button (Mobile) -->
+        <button id="mobile-add-button" class="lg:hidden fixed bottom-6 right-6 w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 text-white shadow-2xl flex items-center justify-center z-30 hover:shadow-3xl transform hover:scale-110 transition-all duration-300">
+            <i class="fas fa-plus text-xl md:text-2xl"></i>
+        </button>
+    </div>
+    
+    <!-- Add/Edit Task Modal -->
+    <div id="task-modal" class="ios-modal">
+        <div class="ios-modal-content max-w-md md:max-w-lg">
+            <div class="ios-modal-header">
+                <span id="modal-title" class="text-lg md:text-xl font-semibold text-gray-800 dark:text-white">Add New Task</span>
+                <button id="close-modal" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                    <i class="fas fa-times text-lg md:text-xl"></i>
+                </button>
+            </div>
+            <div class="ios-modal-body">
+                <div class="space-y-4 md:space-y-6">
+                    <div>
+                        <label class="block text-gray-800 dark:text-gray-200 mb-2 md:mb-3 text-xs md:text-sm font-semibold">Task Title *</label>
+                        <input type="text" id="task-title" placeholder="What needs to be done?" class="ios-input w-full text-base md:text-lg">
+                    </div>
+                    <div>
+                        <label class="block text-gray-800 dark:text-gray-200 mb-2 md:mb-3 text-xs md:text-sm font-semibold">Description (optional)</label>
+                        <textarea id="task-description" placeholder="Add details about this task..." rows="3" class="ios-input w-full resize-none text-base md:text-lg"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-gray-800 dark:text-gray-200 mb-2 md:mb-3 text-xs md:text-sm font-semibold">Priority</label>
+                        <div class="grid grid-cols-3 gap-2 md:gap-3">
+                            <button type="button" data-priority="low" class="priority-option p-3 md:p-4 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-2 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-800 transition-all duration-300">
+                                <i class="fas fa-arrow-down text-lg md:text-xl mb-1 md:mb-2 block"></i>
+                                <div class="font-semibold text-xs md:text-sm">Low</div>
+                            </button>
+                            <button type="button" data-priority="medium" class="priority-option p-3 md:p-4 rounded-xl bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 border-2 border-orange-200 dark:border-orange-800 hover:bg-orange-100 dark:hover:bg-orange-800 transition-all duration-300 active">
+                                <i class="fas fa-minus text-lg md:text-xl mb-1 md:mb-2 block"></i>
+                                <div class="font-semibold text-xs md:text-sm">Medium</div>
+                            </button>
+                            <button type="button" data-priority="high" class="priority-option p-3 md:p-4 rounded-xl bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 border-2 border-red-200 dark:border-red-800 hover:bg-red-100 dark:hover:bg-red-800 transition-all duration-300">
+                                <i class="fas fa-exclamation text-lg md:text-xl mb-1 md:mb-2 block"></i>
+                                <div class="font-semibold text-xs md:text-sm">High</div>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-800 dark:text-gray-200 mb-2 md:mb-3 text-xs md:text-sm font-semibold">Due Date (optional)</label>
+                        <div class="flex items-center">
+                            <i class="fas fa-calendar-day text-blue-500 dark:text-blue-400 text-lg md:text-xl mr-3 md:mr-4"></i>
+                            <input type="date" id="task-due-date" class="ios-input w-full text-base md:text-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ios-modal-footer">
+                <button id="cancel-task-button" class="ios-button bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 text-sm md:text-base px-3 md:px-4 py-2 md:py-3">
+                    Cancel
+                </button>
+                <button id="save-task-button" class="ios-button bg-gradient-to-r from-blue-500 to-teal-400 hover:from-blue-600 hover:to-teal-500 text-white text-sm md:text-base px-3 md:px-4 py-2 md:py-3">
+                    <i class="fas fa-save mr-1 md:mr-3"></i> Save Task
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
